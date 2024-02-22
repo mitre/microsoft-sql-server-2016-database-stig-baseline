@@ -1,0 +1,9 @@
+name: MS_SQL_Server_2016_Database_STIG
+title: MS_SQL_Server_2016_Database_STIG
+maintainer: MITRE SAF Team
+copyright: MITRE, 2024
+copyright_email: saf@groups.mitre.org
+license: Apache-2.0
+summary: null
+version: 2.8.0
+inspec_version: ">= 4.0"
