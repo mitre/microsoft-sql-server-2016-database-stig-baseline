@@ -52,13 +52,15 @@ To revoke any unauthorized permissions:
 
 REVOKE [Permission] ON <Securable> TO <Principal>'
   impact 0.3
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15139r313195_chk'
   tag severity: 'low'
   tag gid: 'V-213921'
-  tag rid: 'SV-213921r879705_rule'
+  tag rid: 'SV-213921r961317_rule'
   tag stig_id: 'SQL6-D0-002800'
   tag gtitle: 'SRG-APP-000328-DB-000301'
   tag fix_id: 'F-15137r313196_fix'
+  tag 'documentable'
   tag legacy: ['SV-93811', 'V-79105']
   tag cci: ['CCI-002165']
   tag nist: ['AC-3 (4)']

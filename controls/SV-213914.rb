@@ -29,13 +29,15 @@ User-schema separation allows for more flexibility in managing database object p
 
 Where possible, locate security-related database objects and code in a separate database, schema, or other separate security domain from database objects and code implementing application logic. In all cases, use GRANT, REVOKE, DENY, ALTER ROLE … ADD MEMBER … and/or ALTER ROLE …. DROP MEMBER statements to add and remove permissions on server-level and database-level security-related objects to provide effective isolation.'
   impact 0.3
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15132r822447_chk'
   tag severity: 'low'
   tag gid: 'V-213914'
-  tag rid: 'SV-213914r879643_rule'
+  tag rid: 'SV-213914r961131_rule'
   tag stig_id: 'SQL6-D0-001900'
   tag gtitle: 'SRG-APP-000233-DB-000124'
   tag fix_id: 'F-15130r822448_fix'
+  tag 'documentable'
   tag legacy: ['SV-93797', 'V-79091']
   tag cci: ['CCI-001084']
   tag nist: ['SC-3']

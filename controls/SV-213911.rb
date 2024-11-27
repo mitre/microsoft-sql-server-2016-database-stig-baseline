@@ -32,14 +32,35 @@ ALTER MASTER KEY REGENERATE WITH ENCRYPTION BY PASSWORD = '[new password]';
 
 Note: The Database Master Key encryption method should not be changed until the effects are thoroughly reviewed. Changing the master key encryption causes all encryption using the Database Master Key to be decrypted and re-encrypted. This action should not be taken during a high-demand time. Please see the MS SQL Server documentation prior to re-encrypting the Database Master Key for detailed information."
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15129r313165_chk'
   tag severity: 'medium'
   tag gid: 'V-213911'
-  tag rid: 'SV-213911r879642_rule'
+  tag rid: 'SV-213911r961128_rule'
   tag stig_id: 'SQL6-D0-001600'
   tag gtitle: 'SRG-APP-000231-DB-000154'
   tag fix_id: 'F-15127r313166_fix'
+  tag 'documentable'
   tag legacy: ['SV-93791', 'V-79085']
   tag cci: ['CCI-001199']
   tag nist: ['SC-28']
+
+  query = %{
+    SELECT
+          COUNT(credential_id) AS count_of_ids
+    FROM
+          [master].sys.master_key_passwords
+  }
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'),
+                              db_name: input('db_name'))
+
+  describe 'Count of `Database Master Key passwords` stored in credentials within the database' do
+    subject { sql_session.query(query).row(0).column('count_of_ids') }
+    its('value') { should cmp 0 }
+  end  
 end

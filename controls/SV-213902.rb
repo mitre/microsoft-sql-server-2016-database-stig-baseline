@@ -42,13 +42,15 @@ Run the following command for each user:
 
 DROP USER [ IF EXISTS ] <user_name>;"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15120r313138_chk'
   tag severity: 'medium'
   tag gid: 'V-213902'
-  tag rid: 'SV-213902r944379_rule'
+  tag rid: 'SV-213902r960864_rule'
   tag stig_id: 'SQL6-D0-000400'
   tag gtitle: 'SRG-APP-000080-DB-000063'
   tag fix_id: 'F-15118r313139_fix'
+  tag 'documentable'
   tag legacy: ['SV-93773', 'V-79067']
   tag cci: ['CCI-000166']
   tag nist: ['AU-10']

@@ -35,13 +35,15 @@ If any user or role membership is not authorized, this is a finding."
 
 REVOKE ALTER ON [<Object Name>] TO [<Principal Name>]'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15124r810828_chk'
   tag severity: 'medium'
   tag gid: 'V-213906'
-  tag rid: 'SV-213906r879586_rule'
+  tag rid: 'SV-213906r960960_rule'
   tag stig_id: 'SQL6-D0-001100'
   tag gtitle: 'SRG-APP-000133-DB-000179'
   tag fix_id: 'F-15122r313151_fix'
+  tag 'documentable'
   tag legacy: ['SV-93781', 'V-79075']
   tag cci: ['CCI-001499']
   tag nist: ['CM-5 (6)']

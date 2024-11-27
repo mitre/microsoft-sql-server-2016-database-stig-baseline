@@ -36,13 +36,15 @@ If trustworthy is enabled and the database owner is a privileged account, review
 
 ALTER DATABASE [<database name>] SET TRUSTWORTHY OFF'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15122r944380_chk'
   tag severity: 'medium'
   tag gid: 'V-213904'
-  tag rid: 'SV-213904r944381_rule'
+  tag rid: 'SV-213904r960864_rule'
   tag stig_id: 'SQL6-D0-000600'
   tag gtitle: 'SRG-APP-000080-DB-000063'
   tag fix_id: 'F-15120r313145_fix'
+  tag 'documentable'
   tag legacy: ['SV-93777', 'V-79071']
   tag cci: ['CCI-000166']
   tag nist: ['AU-10']

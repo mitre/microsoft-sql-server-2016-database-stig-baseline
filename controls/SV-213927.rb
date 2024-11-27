@@ -34,14 +34,16 @@ Review the definitions and contents of the relevant tables/columns for the Alway
 Where transparent data encryption (TDE) is required, create a master key, obtain a certificate protected by the master key, create a database encryption key and protect it by the certificate, and then set the database to use encryption. For guidance from MSDN on how to do this: https://msdn.microsoft.com/en-us/library/bb934049.aspx. 
 
 Where table/column encryption is required, enable encryption on the table/columns in question. For guidance from the Microsoft Developer Network on how to do this with Always Encrypted: https://msdn.microsoft.com/en-us/library/mt163865.aspx.'
-  impact 0.5
+  impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15145r313213_chk'
-  tag severity: 'medium'
+  tag severity: 'high'
   tag gid: 'V-213927'
-  tag rid: 'SV-213927r879800_rule'
+  tag rid: 'SV-213927r1018577_rule'
   tag stig_id: 'SQL6-D0-003400'
   tag gtitle: 'SRG-APP-000429-DB-000387'
   tag fix_id: 'F-15143r313214_fix'
+  tag 'documentable'
   tag legacy: ['SV-93823', 'V-79117']
   tag cci: ['CCI-002476']
   tag nist: ['SC-28 (1)']

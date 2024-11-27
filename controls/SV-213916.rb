@@ -7,29 +7,35 @@ With respect to database management systems, one class of threat is known as SQL
 Even when no such hijacking takes place, invalid input that gets recorded in the database, whether accidental or malicious, reduces the reliability and usability of the system. Available protections include data types, referential constraints, uniqueness constraints, range checking, and application-specific logic. Application-specific logic can be implemented within the database in stored procedures and triggers, where appropriate.
 
 This calls for inspection of application source code, which will require collaboration with the application developers. It is recognized that in many cases, the database administrator (DBA) is organizationally separate from the application developers, and may have limited, if any, access to source code. Nevertheless, protections of this type are so important to the secure operation of databases that they must not be ignored. At a minimum, the DBA must attempt to obtain assurances from the development organization that this issue has been addressed, and must document what has been discovered."
-  desc 'check', 'Review DBMS code (stored procedures, functions, triggers), application code, settings, column and field definitions, and constraints to determine whether the database is protected against invalid input. 
+  desc 'check', 'Review DBMS code (stored procedures, functions, triggers), application code, settings, column and field definitions, and constraints to determine whether the database is protected against invalid input.
 
-If code exists that allows invalid data to be acted upon or input into the database, this is a finding. 
+If code exists that allows invalid data to be acted upon or input into the database, this is a finding.
 
-If column/field definitions are not reflective of the data, this is a finding. 
+If column/field definitions are not reflective of the data, this is a finding.
 
-If columns/fields do not contain constraints and validity checking where required, this is a finding. 
+If columns/fields do not contain constraints and validity checking where required, this is a finding.
 
-Where a column/field is noted in the system documentation as necessarily free-form, even though its name and context suggest that it should be strongly typed and constrained, the absence of these protections is not a finding. 
+Where a column/field is noted in the system documentation as necessarily free-form, even though its name and context suggest that it should be strongly typed and constrained, the absence of these protections is not a finding.
 
 Where a column/field is clearly identified by name, caption or context as Notes, Comments, Description, Text, etc., the absence of these protections is not a finding.'
   desc 'fix', 'Use parameterized queries, constraints, foreign keys, etc. to validate data input. 
 
 Modify SQL Server to properly use the correct column data types as required in the database.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15134r313180_chk'
   tag severity: 'medium'
   tag gid: 'V-213916'
-  tag rid: 'SV-213916r879652_rule'
+  tag rid: 'SV-213916r961158_rule'
   tag stig_id: 'SQL6-D0-002100'
   tag gtitle: 'SRG-APP-000251-DB-000160'
   tag fix_id: 'F-15132r313181_fix'
-  tag legacy: ['SV-93801', 'V-79095']
+  tag 'documentable'
+  tag legacy: ['SV-81881', 'V-67391', 'SV-93801', 'V-79095']
   tag cci: ['CCI-001310']
   tag nist: ['SI-10']
+
+  describe 'Test has no automation procedure, checks must be performed manually' do
+    skip 'This check must be performed manually'
+  end
 end

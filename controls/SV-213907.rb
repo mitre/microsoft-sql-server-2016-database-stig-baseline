@@ -19,13 +19,15 @@ If any schema is owned by an unauthorized database principal, this is a finding.
 
 ALTER AUTHORIZATION ON SCHEMA::[<Schema Name>] TO [<Principal Name>]'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15125r313153_chk'
   tag severity: 'medium'
   tag gid: 'V-213907'
-  tag rid: 'SV-213907r879586_rule'
+  tag rid: 'SV-213907r960960_rule'
   tag stig_id: 'SQL6-D0-001200'
   tag gtitle: 'SRG-APP-000133-DB-000179'
   tag fix_id: 'F-15123r313154_fix'
+  tag 'documentable'
   tag legacy: ['SV-93783', 'V-79077']
   tag cci: ['CCI-001499']
   tag nist: ['CM-5 (6)']

@@ -58,13 +58,15 @@ ENCRYPTION BY SERVER CERTIFICATE ;
 ALTER DATABASE 
 SET ENCRYPTION ON;"
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-54475r863345_chk'
   tag severity: 'high'
   tag gid: 'V-251040'
-  tag rid: 'SV-251040r879944_rule'
+  tag rid: 'SV-251040r962034_rule'
   tag stig_id: 'SQL6-D0-003200'
   tag gtitle: 'SRG-APP-000416-DB-000380'
   tag fix_id: 'F-54429r822451_fix'
+  tag 'documentable'
   tag legacy: ['SV-93819', 'V-79113']
   tag cci: ['CCI-002450']
   tag nist: ['SC-13 b']

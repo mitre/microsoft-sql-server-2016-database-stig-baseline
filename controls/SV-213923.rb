@@ -4,10 +4,10 @@ control 'SV-213923' do
 
 DBMS functionality and the nature and requirements of databases will vary; so while users are not permitted to install unapproved software, there may be instances where the organization allows the user to install approved software packages such as from an approved software repository. The requirements for production servers will be more restrictive than those used for development and research.
 
-SQL Server must enforce software installation by users based upon what types of software installations are permitted (e.g., updates and security patches to existing software) and what types of installations are prohibited (e.g., software whose pedigree with regard to being potentially malicious is unknown or suspect) by the organization). 
+SQL Server must enforce software installation by users based upon what types of software installations are permitted (e.g., updates and security patches to existing software) and what types of installations are prohibited (e.g., software whose pedigree with regard to being potentially malicious is unknown or suspect) by the organization. 
 
 In the case of a database management system, this requirement covers stored procedures, functions, triggers, views, etc.'
-  desc 'check', "If the SQL Server instance supports only software development, experimentation, and/or developer-level testing (that is, excluding production systems, integration testing, stress testing, and user acceptance testing), this is not a finding. 
+  desc 'check', "If the SQL Server instance supports only software development, experimentation, and/or developer-level testing (i.e., excluding production systems, integration testing, stress testing, and user acceptance testing), this is not a finding. 
 
 Obtain a listing of users and roles who are authorized to create, alter, or replace logic modules from the server documentation.
 
@@ -36,19 +36,21 @@ AND M.name != 'dbo'
 If any users or role permissions returned are not authorized to modify the specified object or type, this is a finding. 
 
 If any user or role membership is not authorized, this is a finding."
-  desc 'fix', 'Document and obtain approval for any non-administrative users who require the ability to create, alter, or replace logic modules.
+  desc 'fix', 'Document and obtain approval for any nonadministrative users who require the ability to create, alter, or replace logic modules.
 
 Revoke the ALTER permission from unauthorized users and roles:
 REVOKE ALTER ON [<Object Name>] TO [<Principal Name>]'
   impact 0.5
-  tag check_id: 'C-15141r799958_chk'
+  ref 'DPMS Target MS SQL Server 2016 Database'
+  tag check_id: 'C-15141r998240_chk'
   tag severity: 'medium'
   tag gid: 'V-213923'
-  tag rid: 'SV-213923r879751_rule'
+  tag rid: 'SV-213923r1018608_rule'
   tag stig_id: 'SQL6-D0-003000'
   tag gtitle: 'SRG-APP-000378-DB-000365'
-  tag fix_id: 'F-15139r313202_fix'
+  tag fix_id: 'F-15139r998241_fix'
+  tag 'documentable'
   tag legacy: ['SV-93815', 'V-79109']
-  tag cci: ['CCI-001812']
+  tag cci: ['CCI-001812', 'CCI-003980']
   tag nist: ['CM-11 (2)']
 end

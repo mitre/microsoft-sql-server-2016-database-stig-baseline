@@ -50,14 +50,20 @@ Correct any issues that have been causing backups to fail.
 
 Test the restoration of the database at least once a year; correct any issues that cause it to fail. Maintain a record of these tests.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15128r313162_chk'
   tag severity: 'medium'
   tag gid: 'V-213910'
-  tag rid: 'SV-213910r879641_rule'
+  tag rid: 'SV-213910r961125_rule'
   tag stig_id: 'SQL6-D0-001500'
   tag gtitle: 'SRG-APP-000226-DB-000147'
   tag fix_id: 'F-15126r313163_fix'
+  tag 'documentable'
   tag legacy: ['SV-93789', 'V-79083']
   tag cci: ['CCI-001665']
   tag nist: ['SC-24']
+
+  describe 'Test has no automation procedure, checks must be performed manually' do
+    skip 'This check must be performed manually'
+  end
 end

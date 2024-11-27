@@ -7,9 +7,9 @@ Successful authentication must not automatically give an entity access to an ass
 Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system. 
 
 This requirement is applicable to access control enforcement applications, a category that includes database management systems.  If SQL Server does not follow applicable policy when approving access, it may be in conflict with networks or other applications in the information system. This may result in users either gaining or being denied access inappropriately and in conflict with applicable policy.'
-  desc 'check', 'Review the system documentation to determine the required levels of protection for securables in the database, by type of user. 
+  desc 'check', 'Review the system documentation to determine the required levels of protection for securables in the database by type of user. 
 
-If the database is tempdb, this is NA.
+If the database is tempdb, this is Not Applicable.
 
 Review the permissions actually in place in the database. 
 
@@ -18,14 +18,20 @@ If the actual permissions do not match the documented requirements, this is a fi
 Use the supplemental file "Database permission assignments to users and roles.sql".'
   desc 'fix', 'Use GRANT, REVOKE, DENY, ALTER ROLE … ADD MEMBER … and/or ALTER ROLE …. DROP MEMBER statements to add and remove permissions on database-level securables, bringing them into line with the documented requirements.'
   impact 0.7
-  tag check_id: 'C-15119r822445_chk'
+  ref 'DPMS Target MS SQL Server 2016 Database'
+  tag check_id: 'C-15119r1018574_chk'
   tag severity: 'high'
   tag gid: 'V-213901'
-  tag rid: 'SV-213901r879530_rule'
+  tag rid: 'SV-213901r1018575_rule'
   tag stig_id: 'SQL6-D0-000300'
   tag gtitle: 'SRG-APP-000033-DB-000084'
   tag fix_id: 'F-15117r313136_fix'
-  tag legacy: ['SV-93771', 'V-79065']
+  tag 'documentable'
+  tag legacy: ['SV-81847', 'V-67357', 'SV-93771', 'V-79065']
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
+
+  describe 'Test has no automation procedure, checks must be performed manually' do
+    skip 'This check must be performed manually'
+  end
 end

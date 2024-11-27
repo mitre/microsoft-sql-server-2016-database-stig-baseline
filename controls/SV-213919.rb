@@ -16,14 +16,28 @@ If security labeling requirements have been specified, but neither a third-party
 
 https://msdn.microsoft.com/en-us/library/dn765131.aspx'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15137r313189_chk'
   tag severity: 'medium'
   tag gid: 'V-213919'
-  tag rid: 'SV-213919r879690_rule'
+  tag rid: 'SV-213919r961272_rule'
   tag stig_id: 'SQL6-D0-002600'
   tag gtitle: 'SRG-APP-000313-DB-000309'
   tag fix_id: 'F-15135r313190_fix'
-  tag legacy: ['SV-93807', 'V-79101']
+  tag 'documentable'
+  tag legacy: ['SV-81893', 'V-67403', 'SV-93807', 'V-79101']
   tag cci: ['CCI-002263']
   tag nist: ['AC-16 a']
+
+  if input('security_labeling_required')
+    impact 0.5
+  else
+    impact 0.0
+    desc 'Security labeling is stated as `not required` in the attributes file,
+    this control is not applicable'
+  end
+
+  describe 'Test has no automation procedure, checks must be performed manually' do
+    skip 'This check must be performed manually'
+  end
 end

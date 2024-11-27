@@ -78,13 +78,15 @@ ORDER BY schema_name, module_name
 If any procedures or functions are returned that are not documented, this is a finding."
   desc 'fix', 'Alter stored procedures and functions to remove the "EXECUTE AS" statement.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15140r313198_chk'
   tag severity: 'medium'
   tag gid: 'V-213922'
-  tag rid: 'SV-213922r879719_rule'
+  tag rid: 'SV-213922r961359_rule'
   tag stig_id: 'SQL6-D0-002900'
   tag gtitle: 'SRG-APP-000342-DB-000302'
   tag fix_id: 'F-15138r313199_fix'
+  tag 'documentable'
   tag legacy: ['SV-93813', 'V-79107']
   tag cci: ['CCI-002233']
   tag nist: ['AC-6 (8)']

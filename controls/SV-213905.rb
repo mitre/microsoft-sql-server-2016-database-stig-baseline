@@ -73,14 +73,57 @@ GO
 
 Use REVOKE and/or DENY and/or ALTER SERVER ROLE ... DROP MEMBER ... statements to remove CONTROL DATABASE permission from logins that do not need it.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15123r457863_chk'
   tag severity: 'medium'
   tag gid: 'V-213905'
-  tag rid: 'SV-213905r879560_rule'
+  tag rid: 'SV-213905r960882_rule'
   tag stig_id: 'SQL6-D0-000700'
   tag gtitle: 'SRG-APP-000090-DB-000065'
   tag fix_id: 'F-15121r313148_fix'
-  tag legacy: ['SV-93779', 'V-79073']
+  tag 'documentable'
+  tag legacy: ['SV-81851', 'V-67361', 'SV-93779', 'V-79073']
   tag cci: ['CCI-000171']
   tag nist: ['AU-12 b']
+
+  if input('server_audit_at_database_level_required')
+    impact 0.5
+  else
+    impact 0.0
+    desc 'Inspec attributes has specified that SQL Server Audit is not in use at
+    the database level, this is not applicable (NA)'
+  end
+
+  approved_audit_maintainers = input('approved_audit_maintainers')
+
+  # The query in check-text is assumes the presence of STIG schema as supplied with
+  # the STIG supplemental. The below query ( partially taken from 2016 MSSQL STIG)
+  # will work without STIG supplemental schema.
+
+  query = %{
+    SELECT DPE.PERMISSION_NAME AS 'PERMISSION',
+           DPM.NAME            AS 'ROLE MEMBER',
+           DPR.NAME            AS 'ROLE NAME'
+    FROM   SYS.DATABASE_ROLE_MEMBERS DRM
+           JOIN SYS.DATABASE_PERMISSIONS DPE
+             ON DRM.ROLE_PRINCIPAL_ID = DPE.GRANTEE_PRINCIPAL_ID
+           JOIN SYS.DATABASE_PRINCIPALS DPR
+             ON DRM.ROLE_PRINCIPAL_ID = DPR.PRINCIPAL_ID
+           JOIN SYS.DATABASE_PRINCIPALS DPM
+             ON DRM.MEMBER_PRINCIPAL_ID = DPM.PRINCIPAL_ID
+    WHERE  DPE.PERMISSION_NAME IN ( 'CONTROL', 'ALTER ANY DATABASE AUDIT' )
+    OR DPM.NAME IN ('db_owner')
+  }
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'),
+                              db_name: input('db_name'))
+
+  describe 'List of approved audit maintainers' do
+    subject { sql_session.query(query).column('role member').uniq }
+    it { should match_array approved_audit_maintainers }
+  end
 end

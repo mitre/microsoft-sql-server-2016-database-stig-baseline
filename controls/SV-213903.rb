@@ -39,13 +39,15 @@ ALTER TABLE InsurancePolicy SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE=dbo.Insur
 
 https://docs.microsoft.com/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-2016#system_versionin"
   impact 0.3
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15121r313141_chk'
   tag severity: 'low'
   tag gid: 'V-213903'
-  tag rid: 'SV-213903r879554_rule'
+  tag rid: 'SV-213903r960864_rule'
   tag stig_id: 'SQL6-D0-000500'
   tag gtitle: 'SRG-APP-000080-DB-000063'
   tag fix_id: 'F-15119r313142_fix'
+  tag 'documentable'
   tag legacy: ['SV-93775', 'V-79069']
   tag cci: ['CCI-000166']
   tag nist: ['AU-10']

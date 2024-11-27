@@ -9,49 +9,37 @@ Examples include, but are not limited to, using automation to take action on mul
 SQL Server must be configured to automatically utilize organization-level account management functions, and these functions must immediately enforce the organization's current account policy. 
 
 Automation may be comprised of differing technologies that when placed together, contain an overall mechanism supporting an organization's automated account management requirements."
-  desc 'check', %q(Determine if SQL Server is configured to allow the use of contained databases.
+  desc 'check', %q(Determine if SQL Server is configured to allow the use of contained databases, if it is, take the appropriate precautions to limit their risk.
 
-In the Object Explorer in SQL Server Management Studio (SSMS), right-click on the server instance, select "Properties", and then select the "Advanced" page.
+1) In the Object Explorer in SQL Server Management Studio (SSMS), right-click on the server instance, select "Properties", and then select the "Advanced" page.
+If "Enabled Contained Databases" is "False", this is not a finding.
 
-If "Enabled Contained Databases" is "True", this is a finding. 
-
-AND
-
-In a query interface such as the SSMS Transact-SQL editor, run the statement:
-
+2) If "Enabled Contained Databases" is "True", then in a query interface such as the SSMS Transact-SQL editor, run the statement:
 EXEC sp_configure 'contained database authentication'
+If the returned value in the "config_value" and/or "run_value" column is "0", this is not a finding.
 
-If the returned value in the "config_value" and/or "run_value" column is "1", this is a finding.
+3) Determine whether SQL Server is configured to use only Windows authentication.
+In a query interface such as the SSMS Transact-SQL editor, run the statement:
+SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly')  
+ WHEN 1 THEN 'Windows Authentication'  
+ WHEN 0 THEN 'Windows and SQL Server Authentication'  
+END as [Authentication Mode]
+If the returned value in the "Authentication Mode" column is "Windows Authentication", this is not a finding.
 
-Determine whether SQL Server is configured to use only Windows authentication. 
+If mixed mode (both SQL Server authentication and Windows authentication) is in use, then it must be documented and approved.
 
-In the Object Explorer in SQL Server Management Studio (SSMS), right-click on the server instance, select "Properties", and then select the "Security" page. If Windows Authentication Mode is not selected, this is a finding. 
+From the documentation, obtain the list of accounts authorized to be managed by SQL Server.
+Determine the accounts (SQL Logins) actually managed by SQL Server.
 
-AND
-
-In a query interface such as the SSMS Transact-SQL editor, run the statement: 
-
-SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly')   
- WHEN 1 THEN 'Windows Authentication'   
- WHEN 0 THEN 'Windows and SQL Server Authentication'   
-END as [Authentication Mode] 
-
-If the returned value in the "Authentication Mode" column is not "Windows Authentication", this is a finding. 
-
-Mixed mode (both SQL Server authentication and Windows authentication) is in use. If the need for mixed mode has not been documented and approved, this is a finding. 
-
-From the documentation, obtain the list of accounts authorized to be managed by SQL Server. 
-
-Determine the accounts (SQL Logins) actually managed by SQL Server. Run the statement: 
+Run the statement:
 
 SELECT name
 FROM sys.database_principals
 WHERE type_desc = 'SQL_USER'
-AND authentication_type_desc = 'DATABASE'; 
+AND authentication_type_desc = 'DATABASE';
 
 If any accounts listed by the query are not listed in the documentation, this is a finding.
-
-Documentation must be approved by the ISSO/ISSM.)
+Documentation must be approved by the information system security officer (ISSO)/ information system security manager (ISSM).)
   desc 'fix', %q(If mixed mode is required, document the need and justification; describe the measures taken to ensure the use of SQL Server authentication is kept to a minimum; describe the measures taken to safeguard passwords; list or describe the SQL Logins used; and obtain official approval.
 
 If mixed mode is not required, disable it as follows: 
@@ -80,13 +68,15 @@ To drop a User via a query: 
 USE database_name;
 DROP USER <user_name>;)
   impact 0.7
-  tag check_id: 'C-15118r929094_chk'
+  ref 'DPMS Target MS SQL Server 2016 Database'
+  tag check_id: 'C-15118r1018572_chk'
   tag severity: 'high'
   tag gid: 'V-213900'
-  tag rid: 'SV-213900r929096_rule'
+  tag rid: 'SV-213900r1018573_rule'
   tag stig_id: 'SQL6-D0-000100'
   tag gtitle: 'SRG-APP-000023-DB-000001'
   tag fix_id: 'F-15116r929095_fix'
+  tag 'documentable'
   tag legacy: ['SV-93767', 'V-79061']
   tag cci: ['CCI-000015']
   tag nist: ['AC-2 (1)']

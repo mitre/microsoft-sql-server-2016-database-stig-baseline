@@ -45,13 +45,15 @@ ALTER AUTHORIZATION ON database::DatabaseName TO login;
 
 https://msdn.microsoft.com/en-us/library/ms187359.aspx'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Database'
   tag check_id: 'C-15142r313204_chk'
   tag severity: 'medium'
   tag gid: 'V-213924'
-  tag rid: 'SV-213924r879753_rule'
+  tag rid: 'SV-213924r961461_rule'
   tag stig_id: 'SQL6-D0-003100'
   tag gtitle: 'SRG-APP-000380-DB-000360'
   tag fix_id: 'F-15140r313205_fix'
+  tag 'documentable'
   tag legacy: ['SV-93817', 'V-79111']
   tag cci: ['CCI-001813']
   tag nist: ['CM-5 (1) (a)']
