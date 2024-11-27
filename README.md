@@ -3,7 +3,7 @@ This InSpec Profile was created to facilitate testing and auditing of `MS SQL Se
 infrastructure and applications when validating compliancy with [Department of Defense (DoD) STIG](https://public.cyber.mil/stigs/)
 requirement.
 
-- Profile Version: **3.2.0**
+- Profile Version: **3.2.1**
 - Benchmark Date: **24 Oct 2024**
 - Benchmark Version: **Version 3 Release 2 (V3R2)**
 
